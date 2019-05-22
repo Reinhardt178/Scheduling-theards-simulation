@@ -130,8 +130,7 @@ namespace Scheduling_theards_simulation
 
         private void button1_Click(object sender, EventArgs e)
         {
-            groupBox1.Visible = true;
-            button1.Enabled = false;
+           
             numOfProcesses = (comboBox1.SelectedIndex + 1);
             listBox1.Items.Add("Process \t Arrival \t Burst");
             lblProcess.Text = "Enter Arrival/ Burst Time for process:" + GetProcess(count);
@@ -242,6 +241,8 @@ namespace Scheduling_theards_simulation
             label2.Visible = true;
             button3.Visible = true;
             button4.Visible = false;
+            groupBox1.Visible = true;
+            button1.Enabled = false;
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
@@ -250,6 +251,8 @@ namespace Scheduling_theards_simulation
             label2.Visible = false;
             button4.Visible = true;
             button3.Visible = false;
+            groupBox1.Visible = true;
+            button1.Enabled = false;
         }
 
         private async void button4_Click(object sender, EventArgs e)
@@ -300,26 +303,32 @@ namespace Scheduling_theards_simulation
                                     cLoop++;
                                 }
                                 else
-                                {
-                                    if (array[i, 3] == 2)
+                                {for(int k = 0; k < 1; k++)
                                     {
-                                        array[i, 1] -= 2;
-                                        array[i, 3] += 1;
-                                        listBox1.Items.Add(GetProcess(i) + (array[i, 1]));
-                                        await Task.Delay(500);
-                                        progressBar1.Increment(progress);
-                                        label5.Text = progressBar1.Value.ToString() + "%";
-                                        cLoop++;
+                                        if (array[i, 3] == 2)
+                                        {
+                                            array[i, 1] -= 1;
+                                            array[i, 3] += 1;
+                                            listBox1.Items.Add(GetProcess(i) + (array[i, 1]));
+                                            await Task.Delay(500);
+                                            progressBar1.Increment(progress);
+                                            label5.Text = progressBar1.Value.ToString() + "%";
+                                            cLoop++;
+                                        }
                                     }
-                                    else
+                                    for (int k = 0; k < 2; k++)
                                     {
-                                        array[i, 1] -= 3;
-                                        listBox1.Items.Add(GetProcess(i) + (array[i, 1]));
-                                        await Task.Delay(500);
-                                        progressBar1.Increment(progress);
-                                        label5.Text = progressBar1.Value.ToString() + "%";
-                                        cLoop++;
+                                        if (array[i, 3] == 3)
+                                        {
+                                            array[i, 1] -= 1;
+                                            listBox1.Items.Add(GetProcess(i) + (array[i, 1]));
+                                            await Task.Delay(500);
+                                            progressBar1.Increment(progress);
+                                            label5.Text = progressBar1.Value.ToString() + "%";
+                                            cLoop++;
+                                        }
                                     }
+                                        
                                 }
                                
                             }
