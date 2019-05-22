@@ -70,7 +70,7 @@ namespace Scheduling_theards_simulation
 
         }
         private void button2_Click(object sender, EventArgs e)
-        {
+{
             int arrive = Convert.ToInt32(txtArr.Text);
             int burst = Convert.ToInt32(txtBur.Text);
             array[count, 0] = arrive;
@@ -138,10 +138,17 @@ namespace Scheduling_theards_simulation
         }
         private async void button3_Click(object sender, EventArgs e)
         {
+            int totCicle = 0;
+            for(int o = 0; o < numOfProcesses; o++ )
+            {
+                totCicle += array[o, 1]; 
+            }
+            int progress = 98/totCicle;
             listBox2.Visible = true;
             listBox2.Items.AddRange(listBox1.Items);
             listBox1.Items.Clear();
             int cLoop = 0;
+            int c2Loop = 0;
             
             while (!done)
             {
@@ -152,7 +159,7 @@ namespace Scheduling_theards_simulation
                     {
                         if (array[i, 1] != 0)
                         {
-                            if(array[i,2] < 2)
+                            if(array[i,2] > 2)
                             {
                                 for(int k = 0; k <= array[i,1]; k++)
                                 {
@@ -160,6 +167,9 @@ namespace Scheduling_theards_simulation
                                     listBox1.Items.Add(GetProcess(i) + (array[i, 1]));
                                     await Task.Delay(500);
                                     cLoop++;
+                                    c2Loop++;
+                                    progressBar1.Increment(progress);
+                                    label5.Text = progressBar1.Value.ToString() + "%";
                                 }
                             }
                             else
@@ -168,12 +178,16 @@ namespace Scheduling_theards_simulation
                                 listBox1.Items.Add(GetProcess(i) + (array[i, 1]));
                                 await Task.Delay(500);
                                 cLoop++;
+                                c2Loop++;
+                                progressBar1.Increment(progress);
+                                label5.Text = progressBar1.Value.ToString() + "%";
                             }
                         }
                         else
                         {
-                            listBox1.Items.Add("----" + cLoop);
-                            await Task.Delay(500);
+                            //listBox1.Items.Add("----" + cLoop);
+                            c2Loop--;
+                            progressBar1.Increment(progress);
                             cLoop++;
                             int doneCount = 0;
                             for (int j = 0; j < numOfProcesses; j++)
@@ -186,6 +200,7 @@ namespace Scheduling_theards_simulation
                             if (doneCount == numOfProcesses)
                             {
                                 listBox1.Items.Add("Done");
+                                progressBar1.Increment(progress);
                                 done = true;
                             }
                         }
@@ -204,6 +219,7 @@ namespace Scheduling_theards_simulation
                         if(doneCount == numOfProcesses)
                         {
                             listBox1.Items.Add("Done");
+                            progressBar1.Increment(progress);
                             done = true;
                         }
 
@@ -238,9 +254,18 @@ namespace Scheduling_theards_simulation
 
         private async void button4_Click(object sender, EventArgs e)
         {
+            int totCicle = 0;
+            for (int o = 0; o < numOfProcesses; o++)
+            {
+                totCicle += array[o, 1];
+            }
+            int progress = 98 / totCicle;
+            listBox2.Visible = true;
+            listBox2.Items.AddRange(listBox1.Items);
             listBox1.Items.Clear();
             int cLoop = 0;
             int TQ = 0;
+            
             while (!done)
             {
 
@@ -250,13 +275,15 @@ namespace Scheduling_theards_simulation
                     {
                         if (array[i, 1] != 0)
                         {
-                            if (array[i, 2] < 2)
+                            if (array[i, 2] > 2)
                             {
                                 for (int k = 0; k <= array[i, 1]; k++)
                                 {
                                     array[i, 1] -= 1;
                                     listBox1.Items.Add(GetProcess(i) + (array[i, 1]));
                                     await Task.Delay(500);
+                                    progressBar1.Increment(progress);
+                                    label5.Text = progressBar1.Value.ToString() + "%";
                                     cLoop++;
                                 }
                             }
@@ -268,6 +295,8 @@ namespace Scheduling_theards_simulation
                                     array[i, 3] += 1;
                                     listBox1.Items.Add(GetProcess(i) + (array[i, 1]));
                                     await Task.Delay(500);
+                                    progressBar1.Increment(progress);
+                                    label5.Text = progressBar1.Value.ToString() + "%";
                                     cLoop++;
                                 }
                                 else
@@ -278,6 +307,8 @@ namespace Scheduling_theards_simulation
                                         array[i, 3] += 1;
                                         listBox1.Items.Add(GetProcess(i) + (array[i, 1]));
                                         await Task.Delay(500);
+                                        progressBar1.Increment(progress);
+                                        label5.Text = progressBar1.Value.ToString() + "%";
                                         cLoop++;
                                     }
                                     else
@@ -285,6 +316,8 @@ namespace Scheduling_theards_simulation
                                         array[i, 1] -= 3;
                                         listBox1.Items.Add(GetProcess(i) + (array[i, 1]));
                                         await Task.Delay(500);
+                                        progressBar1.Increment(progress);
+                                        label5.Text = progressBar1.Value.ToString() + "%";
                                         cLoop++;
                                     }
                                 }
@@ -293,12 +326,13 @@ namespace Scheduling_theards_simulation
                         }
                         else
                         {
-                            listBox1.Items.Add("----" + cLoop);
+                            //listBox1.Items.Add("----" + cLoop);
                             cLoop++;
+                            progressBar1.Increment(progress);
                             int doneCount = 0;
                             for (int j = 0; j < numOfProcesses; j++)
-                            {
-                                if (array[j, 1] == 0)
+                            { 
+                                if (array[j, 1] <= 0)
                                 {
                                     doneCount += 1;
                                 }
@@ -306,6 +340,8 @@ namespace Scheduling_theards_simulation
                             if (doneCount == numOfProcesses)
                             {
                                 listBox1.Items.Add("Done");
+                                progressBar1.Increment(progress);
+                                label5.Text = progressBar1.Value.ToString() + "%";
                                 done = true;
                             }
                         }
@@ -315,7 +351,7 @@ namespace Scheduling_theards_simulation
                         int doneCount = 0;
                         for (int j = 0; j < numOfProcesses; j++)
                         {
-                            if (array[j, 1] == 0)
+                            if (array[j, 1] <= 0)
                             {
                                 doneCount += 1;
                             }
@@ -323,6 +359,8 @@ namespace Scheduling_theards_simulation
                         if (doneCount == numOfProcesses)
                         {
                             listBox1.Items.Add("Done");
+                            progressBar1.Increment(progress);
+                            label5.Text = progressBar1.Value.ToString() + "%";
                             done = true;
                         }
                     }

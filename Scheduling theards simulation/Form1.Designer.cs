@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -48,14 +49,19 @@
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.button4 = new System.Windows.Forms.Button();
             this.listBox2 = new System.Windows.Forms.ListBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label5 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 226);
+            this.listBox1.Location = new System.Drawing.Point(15, 239);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(424, 251);
             this.listBox1.TabIndex = 0;
@@ -195,7 +201,7 @@
             // button3
             // 
             this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(315, 483);
+            this.button3.Location = new System.Drawing.Point(315, 496);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(121, 30);
             this.button3.TabIndex = 7;
@@ -240,7 +246,7 @@
             // button4
             // 
             this.button4.Enabled = false;
-            this.button4.Location = new System.Drawing.Point(315, 519);
+            this.button4.Location = new System.Drawing.Point(315, 532);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(121, 30);
             this.button4.TabIndex = 9;
@@ -251,17 +257,39 @@
             // listBox2
             // 
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(462, 226);
+            this.listBox2.Location = new System.Drawing.Point(462, 239);
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(130, 251);
             this.listBox2.TabIndex = 10;
             this.listBox2.Visible = false;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(15, 184);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(424, 23);
+            this.progressBar1.TabIndex = 11;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 210);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(21, 13);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "0%";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(612, 597);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.groupBox2);
@@ -278,6 +306,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -305,6 +334,10 @@
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
