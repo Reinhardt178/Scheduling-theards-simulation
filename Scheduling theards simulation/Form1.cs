@@ -238,6 +238,7 @@ namespace Scheduling_theards_simulation
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             comboBox2.Visible = true;
+            button2.Enabled = true;
             label2.Visible = true;
             button3.Visible = true;
             button4.Visible = false;
